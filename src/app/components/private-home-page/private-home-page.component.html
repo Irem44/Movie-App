@@ -1,0 +1,56 @@
+<div class="private-content">
+  <!-- now playing -->
+  <div class="slider">
+    <div class="title">Vizyondakiler</div>
+    <button class="prev" (click)="slickPrev(slickModal)">&#10094;</button>
+    <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let img of nowPlayingMovies" class="slide">
+        <img [src]="baseUrl + img.poster_path" alt="gallery image" />
+      </div>
+    </ngx-slick-carousel>
+    <button class="next" (click)="slickNext(slickModal)">&#10095;</button>
+  </div>
+
+  <!-- populer -->
+  <div class="slider">
+    <div class="title">Popüler</div>
+    <button class="prev" (click)="slickPrev(slickModal2)">&#10094;</button>
+    <ngx-slick-carousel #slickModal2="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let img of populerMovies" class="slide">
+        <img [src]="baseUrl + img.poster_path" alt="gallery image" />
+      </div>
+    </ngx-slick-carousel>
+    <button class="next" (click)="slickNext(slickModal2)">&#10095;</button>
+  </div>
+
+  <!-- top rated -->
+
+  <div class="slider">
+    <div class="title">En çok tercih edilen</div>
+    <button class="prev" (click)="slickPrev(slickModal3)">&#10094;</button>
+    <ngx-slick-carousel #slickModal3="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let img of topRatedMovies" class="slide">
+        <img [src]="baseUrl + img.poster_path" alt="gallery image" />
+      </div>
+    </ngx-slick-carousel>
+    <button class="next" (click)="slickNext(slickModal3)">&#10095;</button>
+  </div>
+
+  <!-- up coming -->
+
+  <div class="slider">
+    <div class="title">Gelecek</div>
+    <button class="prev" (click)="slickPrev(slickModal4)">&#10094;</button>
+    <ngx-slick-carousel #slickModal4="slick-carousel" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let img of upComingMovies" class="slide">
+        <img
+          [src]="baseUrl + img.poster_path"
+          alt="gallery image"
+          (click)="details(img.id)"
+        />
+      </div>
+    </ngx-slick-carousel>
+    <button class="next" (click)="slickNext(slickModal4)">&#10095;</button>
+  </div>
+  <router-outlet></router-outlet>
+</div>

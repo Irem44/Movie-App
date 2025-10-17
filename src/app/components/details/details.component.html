@@ -1,0 +1,63 @@
+<div class="details-content">
+  <div class="details-img">
+    <table>
+      <tr>
+        <td>
+          <img
+            src="{{ baseUrl + movieDetail.poster_path }}"
+            alt="resim bulunamadı"
+          />
+        </td>
+        <td>
+          <tr>
+            <h1>{{ movieDetail.title }}</h1>
+          </tr>
+          <tr>
+            <span class="movie-detail-title">Türler:</span>
+            <span *ngFor="let movie of movieDetail.genres"
+              ><span style="margin-right: 10px"></span>{{ movie.name }}
+            </span>
+          </tr>
+          <tr>
+            <span
+              ><span class="movie-detail-title">Orijinal Dil:</span
+              >{{ movieDetail.original_language }}</span
+            >
+          </tr>
+          <tr>
+            <span class="movie-detail-title" style="margin-bottom: 20px"
+              >Özet:</span
+            >
+          </tr>
+          <tr>
+            <span>{{ movieDetail.overview }}</span>
+          </tr>
+          <tr>
+            <span class="movie-detail-title">Yayınlanma:</span>
+            <span>{{ movieDetail.release_date }}</span>
+          </tr>
+          <tr>
+            <span class="movie-detail-title">Süre:</span>
+            <span>{{ movieDetail.runtime }}</span>
+          </tr>
+        </td>
+      </tr>
+    </table>
+    <div style="color: aliceblue">
+      <div class="slider">
+        <div class="title">Oyuncular</div>
+        <button class="prev" (click)="slickPrev(slickModalC)">&#10094;</button>
+        <ngx-slick-carousel
+          #slickModalC="slick-carousel"
+          [config]="slideConfig"
+        >
+          <div ngxSlickItem *ngFor="let img of movieCredist.cast" class="slide">
+            <img [src]="baseUrl + img.profile_path" alt="not image" />
+            <span>{{ img.character }}</span>
+          </div>
+        </ngx-slick-carousel>
+        <button class="next" (click)="slickNext(slickModalC)">&#10095;</button>
+      </div>
+    </div>
+  </div>
+</div>

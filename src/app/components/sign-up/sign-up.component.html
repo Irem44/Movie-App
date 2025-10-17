@@ -1,0 +1,13 @@
+<app-background>
+  <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+    <h1>Kayıt Ol</h1>
+    <input type="text" placeholder="name" formControlName="name" />
+    <input type="text" placeholder="surname" formControlName="surname" />
+    <input type="email" placeholder="email" formControlName="email" />
+    <input type="password" placeholder="password" formControlName="password" />
+    <button class="button" (click)="signup()">Kayıt Ol</button>
+  </form>
+</app-background>
+<div style="background-color: black">
+  <app-footer></app-footer>
+</div>

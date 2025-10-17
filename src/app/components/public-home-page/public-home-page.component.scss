@@ -1,0 +1,84 @@
+.general_content {
+  width: 100%;
+  // height: 100% !important;
+  background-color: rgba(0, 0, 0);
+
+  .bg_img_content {
+    width: 100%;
+    height: 699px;
+    margin-bottom: 50px;
+    position: relative;
+    background-image: url("../../../assets/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .transparent-frame {
+      position: absolute;
+      width: 100%;
+      height: 83vh;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  .slogan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: rgb(120, 2, 2);
+    margin-top: 150px;
+    margin-bottom: 50px;
+    font-style: italic;
+
+    span {
+      margin-right: 40px;
+    }
+  }
+}
+.slider {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+
+  .title {
+    color: rgb(120, 2, 2);
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .slide {
+    padding: 0 5px;
+  }
+
+  img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+  }
+
+  button.prev,
+  button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 0 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  button.prev {
+    left: -25px;
+  }
+  button.next {
+    right: -25px;
+  }
+}
