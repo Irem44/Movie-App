@@ -12,6 +12,7 @@ export class UpcomingService {
   upComingMovies$ = this.subject.asObservable();
 
   getAllUpComing() {
+    if (this.subject.value) return;
     const apikey = environments.apikey;
     const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey}&language=en-US&page=2`;
 

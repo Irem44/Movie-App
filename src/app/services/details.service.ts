@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { environments } from '../../environments/environment.local';
 
 @Injectable({
@@ -12,24 +12,21 @@ export class DetailsService {
 
   detailsMovie$ = this.subject.asObservable();
 
-  creaditsMovie$ = this.creditsSubject.asObservable();
+  creditsMovie$ = this.creditsSubject.asObservable();
 
   movieId: any;
   apikey = environments.apikey;
 
   getAllDetails(id: number) {
+    if (this.movieId === id && this.subject.value) return;
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${this.apikey}&language=en-US`;
-
-    this.httpclient.get(url).subscribe({
-      next: (data) => this.subject.next(data),
-      error: (err) => console.log('Details Movie Service', err),
-    });
     const url2 = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${this.apikey}&language=en-US`;
+    this.movieId = id;
 
-    this.httpclient.get(url2).subscribe({
-      next: (data) => this.creditsSubject.next(data),
-      error: (err) => console.log('All Credits', err),
-    });
+    this.httpclient.get(url).subscribe((data) => this.subject.next(data));
+    this.httpclient
+      .get(url2)
+      .subscribe((data) => this.creditsSubject.next(data));
   }
 
   constructor(private httpclient: HttpClient) {}

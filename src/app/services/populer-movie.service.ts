@@ -12,6 +12,7 @@ export class PopulerMovieService {
   populerMovie$ = this.subject.asObservable();
 
   getAllPopulerMovie() {
+    if (this.subject.value) return;
     const apikey = environments.apikey;
 
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=2`;

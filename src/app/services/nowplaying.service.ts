@@ -11,6 +11,8 @@ export class NowplayingService {
   nowPlaying$ = this.subject.asObservable();
 
   getAllNowPlaying() {
+    if (this.subject.value) return;
+
     const apikey = environments.apikey;
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&language=en-US&page=3`;
 
