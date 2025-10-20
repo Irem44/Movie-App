@@ -56,14 +56,7 @@
             *ngFor="let img of movieCredist?.cast"
             class="slide"
           >
-            <img
-              [src]="
-                img.profile_path
-                  ? baseUrl + img.profile_path
-                  : '../../../assets/noImage.png'
-              "
-              alt="not image"
-            />
+            <img [src]="baseUrl + img.profile_path" alt="not image" />
             <span>{{ img.character }}</span>
           </div>
         </ngx-slick-carousel>

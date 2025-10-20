@@ -21,6 +21,7 @@ export class DetailsService {
     if (this.movieId === id && this.subject.value) return;
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${this.apikey}&language=en-US`;
     const url2 = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${this.apikey}&language=en-US`;
+
     this.movieId = id;
 
     this.httpclient.get(url).subscribe((data) => this.subject.next(data));
