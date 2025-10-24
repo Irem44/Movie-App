@@ -1,7 +1,12 @@
 .general_content {
   width: 100%;
-  // height: 100% !important;
   background-color: rgba(0, 0, 0);
+  color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
 
   .bg_img_content {
     width: 100%;
@@ -16,9 +21,82 @@
     .transparent-frame {
       position: absolute;
       width: 100%;
-      height: 83vh;
-      background-color: rgba(0, 0, 0, 0.8);
+      height: 91vh;
+
+      background: rgba(0, 0, 0, 0.8);
     }
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 90%;
+
+    padding: 0 40px;
+    margin-top: 150px;
+  }
+
+  /* Kaydırma Konteyneri */
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+  }
+
+  .scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .movie-card {
+    flex: 0 0 200px;
+    transition: transform 0.2s;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .movie-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .movie-card:hover {
+    transform: scale(1.05);
+    z-index: 5;
+  }
+
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 10;
+    opacity: 0.8;
+  }
+
+  .scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 1;
+  }
+
+  .scroll-btn.left {
+    left: 0;
+  }
+  .scroll-btn.right {
+    right: 0;
   }
 
   .slogan {
@@ -34,51 +112,5 @@
     span {
       margin-right: 40px;
     }
-  }
-}
-.slider {
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-  cursor: pointer;
-
-  .title {
-    color: rgb(120, 2, 2);
-    font-size: 30px;
-    margin-bottom: 20px;
-  }
-
-  .slide {
-    padding: 0 5px;
-  }
-
-  img {
-    width: 100%;
-    height: 350px;
-    object-fit: contain;
-    border-radius: 10px;
-    display: block;
-  }
-
-  button.prev,
-  button.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 0 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 2;
-  }
-
-  button.prev {
-    left: -25px;
-  }
-  button.next {
-    right: -25px;
   }
 }

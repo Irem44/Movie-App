@@ -1,23 +1,33 @@
 <div class="general_content">
   <div class="bg_img_content">
-    <app-header></app-header>
+    <app-header> </app-header>
+
     <div class="transparent-frame"></div>
   </div>
 
-  <div class="slider">
-    <div class="title">Popüler</div>
-    <button class="prev" (click)="slickPrev()">&#10094;</button>
-    <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let img of movies?.results" class="slide">
-        <img [src]="baseUrl + img.poster_path" alt="gallery image" />
+  <div *ngIf="movies?.results?.length" class="slider-wrapper">
+    <button class="scroll-btn left" (click)="scrollLeft()">&#10094;</button>
+    <button class="scroll-btn right" (click)="scrollRight()">&#10095;</button>
+
+    <div #sliderRef class="flex-container scroll-hide">
+      <div *ngFor="let img of movies.results" class="movie-card">
+        <img
+          [src]="baseUrl + img.poster_path"
+          alt="{{ img.title }}"
+          (click)="details(img.id)"
+        />
       </div>
-    </ngx-slick-carousel>
-    <button class="next" (click)="slickNext()">&#10095;</button>
+    </div>
   </div>
+
+  <!-- Slogan Alanı -->
   <div class="slogan">
-    <span>İzle</span> <span>Eğlen</span><span>Keşfet</span>
+    <span>İzle</span> <span>Eğlen</span> <span>Keşfet</span>
   </div>
+
+  <!-- Footer -->
   <div class="footer">
     <app-footer></app-footer>
   </div>
 </div>
+<app-up-button></app-up-button>

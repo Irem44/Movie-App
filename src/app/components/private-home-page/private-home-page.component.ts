@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NowplayingService } from '../../services/nowplaying.service';
-import {
-  SlickCarouselComponent,
-  SlickCarouselModule,
-} from 'ngx-slick-carousel';
+
 import { CommonModule } from '@angular/common';
 import { PopulerMovieService } from '../../services/populer-movie.service';
 import { TopratedService } from '../../services/toprated.service';
@@ -11,10 +8,11 @@ import { UpcomingService } from '../../services/upcoming.service';
 import { DetailsService } from '../../services/details.service';
 import { filter } from 'rxjs';
 import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
+import { UpButtonComponent } from '../up-button/up-button.component';
 
 @Component({
   selector: 'app-private-home-page',
-  imports: [SlickCarouselModule, CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './private-home-page.component.html',
   styleUrl: './private-home-page.component.scss',
 })
@@ -27,6 +25,7 @@ export class PrivateHomePageComponent implements OnInit {
   upComingMovies: any;
   detailsMovies: any;
   detailsid: any;
+  @ViewChild('sliderRef', { static: false }) sliderRef!: ElementRef;
 
   constructor(
     private nowPlayingService: NowplayingService,
@@ -64,24 +63,10 @@ export class PrivateHomePageComponent implements OnInit {
     });
   }
 
-  slideConfig = {
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    dots: true,
-    infinite: true,
-    arrows: false,
-  };
-
-  slickNext(slider: SlickCarouselComponent) {
-    slider.slickNext();
-  }
-
-  slickPrev(slider: SlickCarouselComponent) {
-    slider.slickPrev();
-  }
-
   details(id: number) {
     this.detailsService.getAllDetails(id);
+    this.detailsService.getAllCredits(id);
+    this.detailsService.getAllSimilar(id);
 
     this.detailsService.detailsMovie$.subscribe({
       next: (data) => {
@@ -91,5 +76,25 @@ export class PrivateHomePageComponent implements OnInit {
         });
       },
     });
+  }
+
+  scrollAmount = 280;
+
+  scrollLeft(slider: HTMLElement) {
+    slider.scrollBy({
+      left: -this.scrollAmount,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollRight(slider: HTMLElement) {
+    slider.scrollBy({
+      left: this.scrollAmount,
+      behavior: 'smooth',
+    });
+  }
+
+  favorites() {
+    this.router.navigate(['favorites']);
   }
 }

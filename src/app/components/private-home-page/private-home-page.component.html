@@ -1,68 +1,91 @@
 <div class="private-content">
-  <!-- now playing -->
-  <div class="slider">
-    <div class="title">Vizyondakiler</div>
-    <button class="prev" (click)="slickPrev(slickModal)">&#10094;</button>
-    <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let img of nowPlayingMovies" class="slide">
+  <i class="fa-solid fa-heart" (click)="favorites()"></i>
+
+  <div *ngIf="nowPlayingMovies" class="slider-wrapper">
+    <h1>Vizyondakiler</h1>
+    <button class="scroll-btn left" (click)="scrollLeft(sliderRef)">
+      &#10094;
+    </button>
+    <button class="scroll-btn right" (click)="scrollRight(sliderRef)">
+      &#10095;
+    </button>
+
+    <div #sliderRef class="flex-container scroll-hide">
+      <div *ngFor="let img of nowPlayingMovies" class="movie-card">
         <img
           [src]="baseUrl + img.poster_path"
-          alt="gallery image"
+          alt="{{ img.title }}"
           (click)="details(img.id)"
         />
       </div>
-    </ngx-slick-carousel>
-    <button class="next" (click)="slickNext(slickModal)">&#10095;</button>
+    </div>
   </div>
 
   <!-- populer -->
-  <div class="slider">
-    <div class="title">Popüler</div>
-    <button class="prev" (click)="slickPrev(slickModal2)">&#10094;</button>
-    <ngx-slick-carousel #slickModal2="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let img of populerMovies" class="slide">
+
+  <div *ngIf="populerMovies" class="slider-wrapper">
+    <h1>Popüler</h1>
+    <button class="scroll-btn left" (click)="scrollLeft(sliderRefP)">
+      &#10094;
+    </button>
+    <button class="scroll-btn right" (click)="scrollRight(sliderRefP)">
+      &#10095;
+    </button>
+
+    <div #sliderRefP class="flex-container scroll-hide">
+      <div *ngFor="let img of populerMovies" class="movie-card">
         <img
           [src]="baseUrl + img.poster_path"
-          alt="gallery image"
+          alt="{{ img.title }}"
           (click)="details(img.id)"
         />
       </div>
-    </ngx-slick-carousel>
-    <button class="next" (click)="slickNext(slickModal2)">&#10095;</button>
+    </div>
   </div>
 
   <!-- top rated -->
 
-  <div class="slider">
-    <div class="title">En çok tercih edilen</div>
-    <button class="prev" (click)="slickPrev(slickModal3)">&#10094;</button>
-    <ngx-slick-carousel #slickModal3="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let img of topRatedMovies" class="slide">
+  <div *ngIf="topRatedMovies" class="slider-wrapper">
+    <h1>Yüksek Puan</h1>
+    <button class="scroll-btn left" (click)="scrollLeft(sliderRefT)">
+      &#10094;
+    </button>
+    <button class="scroll-btn right" (click)="scrollRight(sliderRefT)">
+      &#10095;
+    </button>
+
+    <div #sliderRefT class="flex-container scroll-hide">
+      <div *ngFor="let img of topRatedMovies" class="movie-card">
         <img
           [src]="baseUrl + img.poster_path"
-          alt="gallery image"
+          alt="{{ img.title }}"
           (click)="details(img.id)"
         />
       </div>
-    </ngx-slick-carousel>
-    <button class="next" (click)="slickNext(slickModal3)">&#10095;</button>
+    </div>
   </div>
 
   <!-- up coming -->
 
-  <div class="slider">
-    <div class="title">Gelecek</div>
-    <button class="prev" (click)="slickPrev(slickModal4)">&#10094;</button>
-    <ngx-slick-carousel #slickModal4="slick-carousel" [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let img of upComingMovies" class="slide">
+  <div *ngIf="upComingMovies" class="slider-wrapper">
+    <h1>Gelecekler</h1>
+    <button class="scroll-btn left" (click)="scrollLeft(sliderRefU)">
+      &#10094;
+    </button>
+    <button class="scroll-btn right" (click)="scrollRight(sliderRefU)">
+      &#10095;
+    </button>
+
+    <div #sliderRefU class="flex-container scroll-hide">
+      <div *ngFor="let img of upComingMovies" class="movie-card">
         <img
           [src]="baseUrl + img.poster_path"
-          alt="gallery image"
+          alt="{{ img.title }}"
           (click)="details(img.id)"
         />
       </div>
-    </ngx-slick-carousel>
-    <button class="next" (click)="slickNext(slickModal4)">&#10095;</button>
+    </div>
   </div>
+
   <router-outlet></router-outlet>
 </div>

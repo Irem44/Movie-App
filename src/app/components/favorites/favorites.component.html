@@ -1,0 +1,20 @@
+<div class="favorites-content">
+  <h1>Favoriler</h1>
+  <div class="sub-favorites-content">
+    <div class="favorite-element" *ngFor="let movie of details">
+      <table>
+        <tr>
+          <td>
+            <img
+              src="{{ baseUrl + movie.poster_path }}"
+              alt="resim bulunamadı"
+            />
+          </td>
+          <td>
+            <span class="title">{{ movie.title }}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

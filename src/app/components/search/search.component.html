@@ -1,0 +1,29 @@
+<div class="search-content">
+  <input
+    type="text"
+    placeholder="Film Adı "
+    [(ngModel)]="inputData"
+    (input)="onSearchChange()"
+  />
+  <div
+    class="grid-container"
+    *ngIf="filteredMovies.length > 0 && filteredMovies.length < 80; else search"
+  >
+    <div *ngFor="let movie of filteredMovies">
+      <div class="movie-container">
+        <img
+          src="{{ baseUrl + movie.poster_path }}"
+          alt="resim bulunamadı"
+          (click)="details(movie.id)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <ng-template #search>
+    <div class="empty-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+  </ng-template>
+</div>
+<app-up-button></app-up-button>

@@ -14,7 +14,7 @@ export class NowplayingService {
     if (this.subject.value) return;
 
     const apikey = environments.apikey;
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&language=en-US&page=3`;
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&language=en-US&page=1`;
 
     this.httpClient.get(url).subscribe({
       next: (data) => this.subject.next(data),

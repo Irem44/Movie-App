@@ -4,7 +4,7 @@
       <tr>
         <td>
           <img
-            src="{{ baseUrl + movieDetail?.poster_path }}"
+            [src]="baseUrl + movieDetail?.poster_path"
             alt="resim bulunamadı"
           />
         </td>
@@ -40,28 +40,73 @@
             <span class="movie-detail-title">Süre:</span>
             <span>{{ movieDetail?.runtime }}</span>
           </tr>
+          <tr>
+            <i
+              class="fa-solid fa-heart favorites"
+              (click)="send(this.movieDetail)"
+            ></i>
+          </tr>
         </td>
       </tr>
     </table>
+
     <div style="color: aliceblue">
-      <div class="slider">
-        <div class="title">Oyuncular</div>
-        <button class="prev" (click)="slickPrev()">&#10094;</button>
-        <ngx-slick-carousel
-          #slickModalC="slick-carousel"
-          [config]="slideConfig"
-        >
-          <div
-            ngxSlickItem
-            *ngFor="let img of movieCredist?.cast"
-            class="slide"
-          >
-            <img [src]="baseUrl + img.profile_path" alt="not image" />
-            <span>{{ img.character }}</span>
+      <div class="details-content p-4 text-white">
+        <!-- oyuncular -->
+
+        <div *ngIf="movieCredist" class="slider-wrapper">
+          <h1 class="sub-title">Oyuncular</h1>
+          <button class="scroll-btn left" (click)="scrollLeft(sliderRefC)">
+            &#10094;
+          </button>
+          <button class="scroll-btn right" (click)="scrollRight(sliderRefC)">
+            &#10095;
+          </button>
+
+          <div #sliderRefC class="flex-container scroll-hide">
+            <div *ngFor="let img of movieCredist.cast" class="movie-card">
+              <img
+                [src]="baseUrl + img.profile_path"
+                alt="{{ img.title }}"
+                (click)="
+                  creditsDetail(
+                    img.character,
+                    img.name,
+                    img.popularity,
+                    img.profile_path
+                  )
+                "
+              />
+              <span class="character-name">{{ img.character }}</span>
+            </div>
           </div>
-        </ngx-slick-carousel>
-        <button class="next" (click)="slickNext()">&#10095;</button>
+        </div>
+
+        <!-- Benzer -->
+
+        <div *ngIf="movieSimilar" class="slider-wrapper">
+          <h1 class="sub-title">Benzer</h1>
+          <button class="scroll-btn left" (click)="scrollLeft(sliderRefS)">
+            &#10094;
+          </button>
+          <button class="scroll-btn right" (click)="scrollRight(sliderRefS)">
+            &#10095;
+          </button>
+
+          <div #sliderRefS class="flex-container scroll-hide">
+            <div *ngFor="let img of movieSimilar" class="movie-card">
+              <img
+                [src]="baseUrl + img.poster_path"
+                alt="{{ img.title }}"
+                (click)="similarMovieDetails(img.id)"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <app-footer></app-footer>
   </div>
 </div>
+<app-up-button></app-up-button>
